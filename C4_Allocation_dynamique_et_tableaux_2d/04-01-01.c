@@ -30,17 +30,22 @@ int main() {
     int count = 0; 
     while(true)
     {
+        int n;
         printf("Entrez un entier positif (une lettre pour finir): ");
-        scanf("%d", &nombres[count++]);
-        nombres = realloc(nombres,(count+1) * sizeof(int));
-
-
+        if(scanf("%d", &n)!= 1){
+            break;
+        }
+        nombres[count++] = n;
+        
+        // j'aime bien realouer à chaque nombre :)
+        nombres = realloc(nombres,(count+1) * sizeof(int)); 
     }
 
     printf("Vous avez entre: ");
     for(int i  = 0; i<count; i++){
         printf("%d ", nombres[i]);
     }
+    printf("\n");
 
     free(nombres);
     return 0;
