@@ -20,6 +20,28 @@
 
 int main() {
     // Votre code ici
-    
+    int *nombres = malloc(sizeof(int));
+
+    if(nombres==NULL)
+    {
+        printf("Erreur dans l'allocation de la mémoire");
+        return EXIT_FAILURE;
+    }
+    int count = 0; 
+    while(true)
+    {
+        printf("Entrez un entier positif (une lettre pour finir): ");
+        scanf("%d", &nombres[count++]);
+        nombres = realloc(nombres,(count+1) * sizeof(int));
+
+
+    }
+
+    printf("Vous avez entre: ");
+    for(int i  = 0; i<count; i++){
+        printf("%d ", nombres[i]);
+    }
+
+    free(nombres);
     return 0;
 }
