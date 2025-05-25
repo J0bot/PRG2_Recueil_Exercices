@@ -23,11 +23,20 @@
 // Définir les alias de type vec3 et mat3x3
 // Votre code ici
 
+#define mat3x3 double m[3][3]
+#define vec3 v[3];
+
 // Fonction de multiplication matrice-vecteur
 // Votre code ici
 
+void mat_vec_mult(mat3x3 mat, vec3 vec, vec3 result){
+
+}
+
 // Fonctions d'affichage
 // Votre code ici
+
+void print_mat(const char *, )
 
 int main() {
     mat3x3 m = {
