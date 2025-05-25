@@ -16,11 +16,7 @@
  * l'absence de fuites mémoire.
  */
 
-// Fonction à compléter pour lire un entier positif
-size_t lire_size_t(const char *message) {
-    // Votre code ici
-    return 0;
-}
+
 
 int main() {
     size_t lignes;
@@ -29,21 +25,87 @@ int main() {
 
     // 1. Demander à l'utilisateur le nombre de lignes et de colonnes
     // Votre code ici
+    printf("Entrez le nombre de lignes: ");
+    while(1){
+        if(scanf("%lu", &lignes)!=1){
+            printf("Erreur de saisie. Entrez un entier positif : ");
+            while (getchar() != '\n');
+            continue;
+        }
+        break;
+    }
+
+    printf("Entrez le nombre de colonnes: ");
+    while(1){
+        if(scanf("%lu", &colonnes)!=1){
+            printf("Erreur de saisie. Entrez un entier positif : ");
+            while(getchar()!= '\n');
+            continue;
+        }
+        break;
+    }
+
+
+
     
     // 2. Allouer le tableau de tableaux
     // Votre code ici
+
+    tab = malloc(lignes * sizeof(int*));
+    if(tab == NULL){
+        printf("Erreur d'allocation de mémoire pour tab\n");
+        goto free_tab;
+    }
+
     
     // 3. Allouer les tableaux pour chaque ligne
     // Votre code ici
+
+    for(int i = 0 ; i<lignes; i++){
+        tab[i] = malloc(colonnes * sizeof(int));
+        if(tab[i] ==NULL){
+            printf("Erreur d'allocation de mémoire pour tab[%d]", i);
+            goto free_all;
+        }
+    }
     
     // 4. Remplir avec les valeurs de la table de multiplication
     // Votre code ici
+
+    for(int i = 0 ; i<lignes; i++){
+        for(int j = 0 ; j<colonnes; j++){
+            tab[i][j] = (i+1) * (j+1);
+        }
+    }
     
     // 5. Afficher la table
     // Votre code ici
+
+    for(int i = 0 ; i<lignes; i++){
+        for(int j = 0 ; j<colonnes; j++){
+            if(lignes*colonnes<100){
+                printf("%2d ", tab[i][j]);
+            }
+            else{
+                printf("%3d ", tab[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
     
     // 6. Libérer la mémoire (attention aux fuites mémoire!)
     // Votre code ici
+
+free_all:
+    for(int i = 0 ; i< lignes; i++){
+        free(tab[i]);
+    }
+
+free_tab:
+
+    free(tab);
     
-    return 0;
+    
+    return EXIT_SUCCESS;
 }
