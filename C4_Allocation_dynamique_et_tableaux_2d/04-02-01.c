@@ -27,6 +27,8 @@ int main() {
     // Méthode 1: Tableau 1D
     // Votre code ici
 
+    printf("tab1d : \n");
+
     int *tab_1d = malloc(WIDTH*HEIGHT * sizeof(int));
     int index = 0 ;
     for(int i = 0 ; i< HEIGHT; i++){
@@ -38,22 +40,88 @@ int main() {
 
     for(int i = 0 ; i< HEIGHT; i++){
         for(int j = 0 ; j< WIDTH; j++){
-            printf("%s%d",tab_1d[index]<10? "  ": " ", tab_1d[index++]);
+            printf("%2d ", tab_1d[index++]);
         }
         printf("\n");
     }
 
 
     free(tab_1d);
+
+    printf("\n");
     
     // Méthode 2: Tableau 2D
     // Votre code ici
+    {
+        
+    printf("tab2d : \n");
     
+    int tab_2d[HEIGHT][WIDTH];
+
+    for(int i = 0; i<HEIGHT; i++){
+        for(int j = 0; j< WIDTH; j++){
+            tab_2d[i][j] = (i+1) * (j+1);
+        }
+    }
+
+    for(int i = 0; i<HEIGHT; i++){
+        for(int j = 0; j< WIDTH; j++){
+            printf("%2d ", tab_2d[i][j]);
+        }
+        printf("\n");
+    }
+    }
+
+    printf("\n");
+
     // Méthode 3: Remplissage 1D, parcours 2D
     // Votre code ici
+
+    printf("tab1d to 2d : \n");
+
+
+    int *tab_1d_to_2d = malloc(WIDTH*HEIGHT * sizeof(int));
+    for(int i = 0 ; i< HEIGHT; i++){
+        for(int j = 0 ; j< WIDTH; j++){
+            tab_1d_to_2d[i*WIDTH + j] = (i+1) * (j+1);
+        }
+    }
+
+    int (*tab_2d_from_1d)[WIDTH] = (int(*)[WIDTH]) tab_1d_to_2d;
+    for(int i = 0 ; i<HEIGHT; i++){
+        for(int j = 0 ; j<WIDTH; j++){
+            printf("%2d ", tab_2d_from_1d[i][j]);
+        }
+        printf("\n");
+    }
+
+    free (tab_1d_to_2d);
+
+    printf("\n");
+
     
     // Méthode 4: Remplissage 2D, parcours 1D
     // Votre code ici
+
+    printf("tab2d to 1d : \n");
+
+
+    int tab2d_to_1d[HEIGHT][WIDTH];
+    for(int i = 0; i<HEIGHT; i++){
+        for(int j = 0; j< WIDTH; j++){
+            tab2d_to_1d[i][j] = (i+1) * (j+1);
+        }
+    }
+
+    int *tab1d_from_2d = (int *) tab2d_to_1d;
+    
+    for(int i = 0 ; i< HEIGHT; i++){
+        for(int j = 0 ; j< WIDTH; j++){
+            printf("%2d ", tab1d_from_2d[i * WIDTH + j]);
+        }
+        printf("\n");
+    }
+    
     
     return 0;
 }
