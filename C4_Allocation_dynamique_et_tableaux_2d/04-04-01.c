@@ -32,8 +32,9 @@ typedef double vec3[3];
 void mat_vec_mult(const mat3x3 mat, const vec3 vec, vec3 result){
     for(int i = 0 ; i<3; i++)
     {
+        result[i] = 0 ;
         for(int j = 0 ; j <3; j++){
-            
+            result[i] += mat[i][j] * vec[j];
         }
     }
 }
@@ -80,10 +81,8 @@ void print_mat(const char *str, ... ){
         
         index++;
     }
+    va_end(params);
 }
-
-
-
 
 int main() {
     mat3x3 m = {
