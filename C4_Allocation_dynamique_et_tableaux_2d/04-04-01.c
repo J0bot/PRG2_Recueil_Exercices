@@ -23,20 +23,67 @@
 // Définir les alias de type vec3 et mat3x3
 // Votre code ici
 
-#define mat3x3 double m[3][3]
-#define vec3 v[3];
+typedef double mat3x3[3][3];
+typedef double vec3[3];
 
 // Fonction de multiplication matrice-vecteur
 // Votre code ici
 
-void mat_vec_mult(mat3x3 mat, vec3 vec, vec3 result){
+void mat_vec_mult(const mat3x3 mat, const vec3 vec, vec3 result){
+    for(int i = 0 ; i<3; i++)
+    {
+        for(int j = 0 ; j <3; j++){
 
+        }
+    }
 }
 
 // Fonctions d'affichage
 // Votre code ici
 
-void print_mat(const char *, )
+void display_vec(const vec3 v){
+    printf("[");
+    for(int i = 0 ; i<3; i++){
+        printf("%0.lf%s", v[i], i==2 ? "": ", ");
+    }
+    printf("]");
+}
+
+void display_mat(const mat3x3 m)
+{
+    printf("[");
+    for(int i = 0 ;i<3; i++){
+        display_vec(m[i]);
+        printf("%s", i==2 ? "": ", ");
+    }
+    printf("]");
+}
+
+void print_mat(const char *str, ... ){
+    va_list params; 
+
+    va_start(params, str);
+    int index= 0 ;
+    while(str[index]!='\0'){
+        if(str[index]=='%' ){
+        
+            if(str[index+1] == 'm'){
+                display_mat((double(*)[3])va_arg(params, double(*)[3]));
+            }
+            
+            if(str[index+1]== 'v'){
+                display_vec((double(*))va_arg(params, double(*)));
+            }
+            index+=2;
+        }
+        printf("%c", str[index]);
+        
+        index++;
+    }
+}
+
+
+
 
 int main() {
     mat3x3 m = {
@@ -49,6 +96,8 @@ int main() {
     vec3 w = {};
 
     mat_vec_mult(m, v, w);
+
+    
     print_mat("%m * %v = %v\n", m, v, w);
     
     return 0;
