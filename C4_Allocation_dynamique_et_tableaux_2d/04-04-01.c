@@ -33,7 +33,7 @@ void mat_vec_mult(const mat3x3 mat, const vec3 vec, vec3 result){
     for(int i = 0 ; i<3; i++)
     {
         for(int j = 0 ; j <3; j++){
-
+            
         }
     }
 }
