@@ -17,6 +17,15 @@
 // Fonction à compléter pour tester si une chaîne est un palindrome
 bool palindrome(char *s) {
     // Votre code ici
+
+    int len = 0;
+    while(s[len]!='\0') { len++;}
+
+    for(int i = 0 ; i<len; i++){
+        if (s[i] != s[len -1 -i]) {
+            return false;
+        }
+    }
     return true;
 }
 
@@ -29,6 +38,12 @@ int main() {
     
     // Conversion en majuscules et test du palindrome
     // Votre code ici
-    
+
+    for(int i = 0; i<99; i++){
+        upstr[i] = toupper(str[i]);
+    }
+
+    printf("[i] %s %s un palindrome\n", upstr , palindrome(upstr)==true ? "est" : "n'est pas");
+
     return 0;
 }
